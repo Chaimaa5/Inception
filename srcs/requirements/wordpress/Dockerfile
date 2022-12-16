@@ -2,6 +2,8 @@ FROM debian:buster
 
 RUN apt update -y && apt update
 
+WORKDIR /var/www/html/wordpress
+
 RUN apt install curl -y
 
 RUN apt -y install php7.3-fpm php7.3-mysql
@@ -14,4 +16,4 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN wp core download --allow-root
 
-RUN wp config create --url=cel-mhan.42.fr --title=cel-mhan --admin_user=cel-mhan --admin_password=strongpassword --admin_email=cel-mhan@42.com --allow-root
+RUN wp core config  --dbname='mariadb' --dbuser='ch' --url='localhost' --path='/var/www/html/wordpress' --allow-root
