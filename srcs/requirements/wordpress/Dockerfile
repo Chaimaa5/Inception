@@ -14,4 +14,4 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN wp core download --allow-root
 
-RUN wp core config --url=cel-mhan.42.fr --title=cel-mhan --admin_user=cel-mhan --admin_password=strongpassword --admin_email=cel-mhan@42.com --allow-root
+RUN wp config create --url=cel-mhan.42.fr --title=cel-mhan --admin_user=cel-mhan --admin_password=strongpassword --admin_email=cel-mhan@42.com --allow-root

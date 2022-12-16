@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    build: /requirements/mariadb/Dockerfile
+    container_name: mariadb
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+    networks:
+  wordpress:
+    depends_on:
+    - db
+    build : /requirements/wordpress/Dockerfile
+    container_name: wordpress
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+    networks:
+  webserver:
+    depends_on: wordpress
+    build: /requirements/nginx/Dockerfile
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+    - "443:443"
