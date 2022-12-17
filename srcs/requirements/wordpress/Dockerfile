@@ -16,4 +16,4 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN wp core download --allow-root
 
-RUN wp core config  --dbname='mariadb' --dbuser='ch' --url='localhost' --path='/var/www/html/wordpress' --allow-root
+RUN wp core config  --dbname='wordpress' --dbuser='db_user' --url='localhost' --path='/var/www/html/wordpress' --allow-root

@@ -7,7 +7,9 @@ services:
     restart: unless-stopped
     env_file: .env
     volumes:
-    networks:
+    # networks:
+    ports:
+    - "3306:3306"
   wordpress:
     depends_on:
     - db
@@ -16,7 +18,9 @@ services:
     restart: unless-stopped
     env_file: .env
     volumes:
-    networks:
+    # networks:
+    ports:
+    - "9000:9000"
   webserver:
     depends_on: wordpress
     build: /requirements/nginx/
@@ -24,7 +28,7 @@ services:
     restart: unless-stopped
     ports:
     - "443:443"
-volumes:
-    -
-networks:
-  -
+# volumes:
+#     -
+# networks:
+#   -
