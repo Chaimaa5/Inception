@@ -2,37 +2,37 @@ version: '3'
 
 services:
   db:
-    build: ./mariadb/
+    build: ./requirements/mariadb/
     container_name: mariadb
     restart: unless-stopped
     env_file: .env
     volumes:
-    - wordpress_db:/var/lib/mysql
+     - wordpress_db:/var/lib/mysql
     networks:
-    - app-network
+     - app-network
     ports:
-    - "3306:3306"
+     - "3306:3306"
   wordpress:
     depends_on:
-    - db
-    build : ./wordpress/
+     - db
+    build : ./requirements/wordpress/
     container_name: wordpress
     restart: unless-stopped
     env_file: .env
     volumes:
-    - wordpress:/var/www/html
+     - wordpress:/var/www/html
     networks:
-    - app-network
+     - app-network
     ports:
-    - "9000:9000"
+     - "9000:9000"
   webserver:
     depends_on: 
-    - wordpress
-    build: ./nginx/
+     - wordpress
+    build: ./requirements/nginx/
     container_name: nginx
     restart: unless-stopped
     ports:
-    - "443:443"
+     - "443:443"
     networks:
       - app-network
 volumes:
