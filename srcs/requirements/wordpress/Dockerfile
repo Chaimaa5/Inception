@@ -2,11 +2,11 @@ FROM debian:buster
 
 RUN apt update -y && apt update
 
-WORKDIR /var/www/html/wordpress
-
 RUN apt install curl -y
 
 RUN apt -y install php7.3-fpm php7.3-mysql
+
+WORKDIR /var/www/html/wordpress
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
