@@ -2,9 +2,9 @@
 
 service mysql start
 
-mysql -u root -e "CREATE DATABASE wordpress;"
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress;"
 
-mysql -u root -e "CREATE USER 'db_user' IDENTIFIED BY 'password';"
+mysql -u root -e "CREATE USER IF NOT EXISTS 'db_user' IDENTIFIED BY 'password';"
 
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'db_user' IDENTIFIED BY 'password';"
 

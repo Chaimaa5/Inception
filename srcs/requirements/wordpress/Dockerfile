@@ -2,21 +2,20 @@ FROM debian:buster
 
 RUN apt update -y && apt update
 
-RUN apt install curl -y
 
-RUN apt -y install php7.3-fpm php7.3-mysql
+RUN apt -y install php php7.3-fpm php7.3-mysql wget
 
-WORKDIR /var/www/html/wordpress
+# Installing app
+RUN wget -P /var/www/html https://wordpress.org/latest.tar.gz
 
-# Download wp-cli
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chown -R www-data:www-data /var/www/html/
 
-# Make it executable
-RUN chmod +x wp-cli.phar
+RUN chmod -R 777 /var/www/html/
 
-# Move it into /usr/local/bin/wp
-RUN mv wp-cli.phar /usr/local/bin/wp
+WORKDIR /var/www/html/
 
-RUN wp core download --allow-root
+RUN tar xfz latest.tar.gz
 
-RUN wp core config --dbname='wordpress' --dbuser='db_user' --url='localhost' --path='/var/www/html/wordpress' --allow-root
+RUN rm -rf latest.tar.gz
+
+# CMD while true; do sleep 1; done
