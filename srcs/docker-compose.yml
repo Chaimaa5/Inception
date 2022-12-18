@@ -45,8 +45,16 @@ services:
 volumes:
   wordpress_db:
    driver: local
+   driver_opts:
+    type : none
+    o : bind
+    device: "${PWD}/requirements/mariadb/tools/"
   wordpress:
    driver: local
+   driver_opts:
+    type : none
+    o : bind
+    device: ".${PWD}/requirements/wordpress/tools/"
 networks:
   app-network:
    driver: bridge
