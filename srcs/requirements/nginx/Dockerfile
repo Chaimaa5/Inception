@@ -7,5 +7,5 @@
  COPY ./nginx-selfsigned.key /
  
  COPY ./default /etc/nginx/sites-available/
-   
+
  CMD ["nginx", "-g", "daemon off;"]

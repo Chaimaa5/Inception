@@ -7,12 +7,12 @@ services:
     restart: unless-stopped
     env_file: .env
     environment:
-      - MYSQL_ROOT_PASSWORD= new_password
+      - MYSQL_ROOT_PASSWORD=wordpress
       - MYSQL_DATABASE=wordpress
-      - MYSQL_USER= db_user
-      - MYSQL_PASSWORD= password
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
     volumes:
-     - wordpress_db:/var/lib/mysql
+     - wordpress_db:/var/lib/mysql/
     networks:
      - app-network
   wordpress:
@@ -21,13 +21,14 @@ services:
     build : ./requirements/wordpress/
     container_name: wordpress
     restart: unless-stopped
-    env_file: .env
     volumes:
      - wordpress:/var/www/html/wordpress
     environment:
       - WORDPRESS_DB_HOST=db:3306
-      - WORDPRESS_DB_USER= wordpress
-      - WORDPRESS_DB_PASSWORD= password
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+    env_file: .env
     networks:
      - app-network
   webserver:
@@ -36,6 +37,7 @@ services:
     build: ./requirements/nginx/
     container_name: nginx
     restart: unless-stopped
+    env_file: .env
     volumes:
      - wordpress:/var/www/html/wordpress
     ports:
