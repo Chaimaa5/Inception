@@ -1,5 +1,9 @@
-# build docker build -t <name to give to your image>
-# push
-# run docker run -p 9000:80 <image-name>
 
+up: 
+	cd srcs / docker compose up -d --build
 
+build:
+  cd srcs / doocker compose build -docker
+
+down:
+  cd srcs / docker compose down

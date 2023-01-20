@@ -10,5 +10,5 @@ mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'wordpress'@'%' IDENTIFIED BY '
 
 mysql -u root -e "FLUSH PRIVILEGES;"
 
-#mysql -u root -e "ALTER USER 'root'@localhost IDENTIFIED BY 'wordpress';"
+mysql -u root -e "ALTER USER 'root'@localhost IDENTIFIED BY 'wordpress';"
 
