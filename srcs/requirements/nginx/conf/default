@@ -1,7 +1,4 @@
 server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-
 	# SSL configuration
 	ssl_certificate /nginx-selfsigned.crt;
     ssl_certificate_key /nginx-selfsigned.key;
@@ -14,7 +11,7 @@ server {
 	# Add index.php to the list if you are using PHP
 	index index.php index.html;
 
-	server_name _;
+	server_name cel-mhan.42.fr;
 
 	location / {
 		try_files $uri $uri/ =404;

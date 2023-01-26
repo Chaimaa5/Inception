@@ -1,0 +1,1 @@
+wp core install --url='localhost' --title='My_Site' --admin_user='wordpress' --admin_password='wordpress'  --admin_email=wordpress@gmail.com --allow-root

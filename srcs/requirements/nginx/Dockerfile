@@ -2,10 +2,10 @@
  
  RUN apt update -y && apt install -y nginx 
   
- COPY ./nginx-selfsigned.crt /
+ COPY ./ssl/nginx-selfsigned.crt /
 
- COPY ./nginx-selfsigned.key /
+ COPY ./ssl/nginx-selfsigned.key /
  
- COPY ./default /etc/nginx/sites-available/
+ COPY ./conf/default /etc/nginx/sites-available/
 
  CMD ["nginx", "-g", "daemon off;"]

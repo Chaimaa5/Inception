@@ -4,10 +4,10 @@ RUN apt update -y
 
 RUN apt install -y mariadb-server
 
-COPY ./50-server.cnf /etc/mysql/mariadb.conf.d/
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-COPY ./script.sh /var/lib/mysql/
+COPY ./db/script.sh /var/lib/mysql/
 
-RUN ["/bin/bash", "/var/lib/mysql/script.sh"]
+CMD ["/bin/bash", "/var/lib/mysql/script.sh"]
 
 CMD ["mysqld_safe"] 

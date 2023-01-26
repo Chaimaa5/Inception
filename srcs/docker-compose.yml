@@ -22,7 +22,7 @@ services:
     container_name: wordpress
     restart: unless-stopped
     volumes:
-     - wordpress:/var/www/html/wordpress
+     - wordpress:/var/www/html/
     environment:
       - WORDPRESS_DB_HOST=mariadb
       - WORDPRESS_DB_NAME=wordpress
@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
     env_file: .env
     volumes:
-     - wordpress:/var/www/html/wordpress
+     - wordpress:/var/www/html/
     ports:
      - "443:443"
     networks:
