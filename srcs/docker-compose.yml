@@ -50,13 +50,13 @@ volumes:
    driver_opts:
     type : none
     o : bind
-    device: "${PWD}/requirements/mariadb/tools/"
+    device: "/home/cel-mhan/data/db"
   wordpress:
    driver: local
    driver_opts:
     type : none
     o : bind
-    device: ".${PWD}/requirements/wordpress/tools/"
+    device: "/home/cel-mhan/data/wp"
 networks:
   app-network:
    driver: bridge
