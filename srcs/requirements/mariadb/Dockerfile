@@ -4,10 +4,16 @@ RUN apt update -y
 
 RUN apt install -y mariadb-server
 
+ARG MYSQL_DATABASE \
+	MYSQL_USER \
+	MYSQL_PASSWORD
+
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 COPY ./db/script.sh /var/lib/mysql/
 
-CMD ["/bin/bash", "/var/lib/mysql/script.sh"]
+RUN chmod 777 /var/lib/mysql/script.sh
 
-CMD ["mysqld_safe"] 
+RUN ./var/lib/mysql/script.sh
+
+CMD ["mysqld"] 

@@ -3,11 +3,20 @@ FROM debian:buster
 
 RUN apt update -y && apt update
 
-
 RUN apt -y install php php7.3-fpm php7.3-mysql curl
 
 WORKDIR /var/www/html/wordpress
 
+ARG WORDPRESS_DB_HOST \
+    WORDPRESS_DB_NAME \
+    WORDPRESS_DB_USER \
+    WORDPRESS_DB_PASSWORD \
+    ADMIN_USER \
+    ADMIN_PASSWORD \
+    ADMIN_EMAIL \
+    WORDPRESS_USER_NAME \
+    WORDPRESS_USER_EMAIL \
+    WORDPRESS_USER_PASSWORD 
 RUN chown -R www-data:www-data /var/www/html/
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -21,6 +30,9 @@ RUN wp core config --dbname=${WORDPRESS_DB_NAME} --dbuser=${WORDPRESS_DB_USER} -
 COPY conf/www.conf /etc/php/7.3/fpm/pool.d/
 RUN service php7.3-fpm start
 RUN service php7.3-fpm stop
+COPY conf/config.sh /var/www/html/wordpress/
+RUN  chmod +x /var/www/html/wordpress/config.sh
+ENTRYPOINT ["/bin/bash", "/var/www/html/wordpress/config.sh"]
 
 CMD [ "php-fpm7.3", "-F", "-R"]
    

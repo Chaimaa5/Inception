@@ -2,15 +2,16 @@ version: '3'
 
 services:
   mariadb:
-    build: ./requirements/mariadb/
-    container_name: mariadb
-    restart: unless-stopped
-    env_file: .env
-    environment:
+    build: 
+     context: ./requirements/mariadb/
+     args:
       - MYSQL_ROOT_PASSWORD=wordpress
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD=wordpress
+    container_name: mariadb
+    restart: unless-stopped
+    env_file: .env
     volumes:
      - wordpress_db:/var/lib/mysql/
     networks:
@@ -18,16 +19,23 @@ services:
   wordpress:
     depends_on:
      - mariadb
-    build : ./requirements/wordpress/
-    container_name: wordpress
-    restart: unless-stopped
-    volumes:
-     - wordpress:/var/www/html/
-    environment:
+    build :
+     context: ./requirements/wordpress/
+     args:
       - WORDPRESS_DB_HOST=mariadb
       - WORDPRESS_DB_NAME=wordpress
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_USER_NAME=cel-mhan
+      - WORDPRESS_USER_EMAIL=cel-mhan@gmail.com
+      - WORDPRESS_USER_PASSWORD=wordpress
+      - ADMIN_USER=wordpress
+      - ADMIN_PASSWORD=wordpress
+      - ADMIN_EMAIL=wordpress@gmail.com
+    container_name: wordpress
+    restart: unless-stopped
+    volumes:
+     - wordpress:/var/www/html/
     env_file: .env
     networks:
      - app-network
