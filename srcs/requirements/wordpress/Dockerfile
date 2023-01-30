@@ -12,7 +12,7 @@ ARG WORDPRESS_DB_HOST \
     WORDPRESS_DB_USER \
     WORDPRESS_DB_PASSWORD \
     ADMIN_USER \
-    ADMIN_PASSWORD \
+    WORDPRESS_PASSWORD  \
     ADMIN_EMAIL \
     WORDPRESS_USER_NAME \
     WORDPRESS_USER_EMAIL \
@@ -33,6 +33,7 @@ RUN service php7.3-fpm stop
 COPY conf/config.sh /var/www/html/wordpress/
 RUN  chmod +x /var/www/html/wordpress/config.sh
 ENTRYPOINT ["/bin/bash", "/var/www/html/wordpress/config.sh"]
+# RUN /bin/bash /var/www/html/wordpress/config.sh
 
 CMD [ "php-fpm7.3", "-F", "-R"]
    

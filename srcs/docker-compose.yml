@@ -5,10 +5,10 @@ services:
     build: 
      context: ./requirements/mariadb/
      args:
-      - MYSQL_ROOT_PASSWORD=wordpress
+      - MYSQL_ROOT_PASSWORD=CmWp%13
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
-      - MYSQL_PASSWORD=wordpress
+      - MYSQL_PASSWORD=CmWp%13
     container_name: mariadb
     restart: unless-stopped
     env_file: .env
@@ -25,13 +25,12 @@ services:
       - WORDPRESS_DB_HOST=mariadb
       - WORDPRESS_DB_NAME=wordpress
       - WORDPRESS_DB_USER=wordpress
-      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_PASSWORD=CmWp%13
       - WORDPRESS_USER_NAME=cel-mhan
-      - WORDPRESS_USER_EMAIL=cel-mhan@gmail.com
-      - WORDPRESS_USER_PASSWORD=wordpress
       - ADMIN_USER=wordpress
-      - ADMIN_PASSWORD=wordpress
+      - WORDPRESS_USER_EMAIL=cel-mhan@gmail.com
       - ADMIN_EMAIL=wordpress@gmail.com
+      - WORDPRESS_PASSWORD=CmWp%13
     container_name: wordpress
     restart: unless-stopped
     volumes:
